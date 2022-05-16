@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private double currencyAmount;
     private double currencyRate;
     private double total;
+    private String result;
 
     private TextInputEditText name1;
     private TextInputEditText name2;
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             currencyRate = Double.parseDouble(rate.getText().toString());
         } catch (NumberFormatException e) {
             //else
-            Snackbar.make(view, "Only type valid doubles", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(view, "Only type in valid doubles for the amount and rate", Snackbar.LENGTH_LONG).show();
             return;
         }
 
@@ -80,8 +81,9 @@ public class MainActivity extends AppCompatActivity {
         try{
             total = mCurrencyConverter.getConvertedCurrencyAmount();
 
-            Snackbar.make(view,
-                    name1 + " " + currencyAmount + " = " + name2 + " " + total,
+            result = getSnackbarText();
+
+            Snackbar.make(view, result,
                     Snackbar.LENGTH_LONG).show();
             if(mClearAmountAfterCalculation)
             {
@@ -94,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
             //else
             Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG).show();
         }
+    }
+
+    private String getSnackbarText() {
+        return name1 + " " + currencyAmount + " = " + name2 + " " + total;
     }
 
     private void initializeViews() {

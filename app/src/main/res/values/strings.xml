@@ -13,4 +13,8 @@
     <string name="currencyHelperText">ex: USD, NIS, CAD</string>
     <string name="from">FROM</string>
     <string name="to">TO</string>
+    <string name="currency_amount">Currency Amount</string>
+    <string name="amount_ex">ex: 57.93</string>
+    <string name="exchange_rate">Exchange Rate</string>
+    <string name="rate_ex">ex: 3.2% is .032</string>
 </resources>

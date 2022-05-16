@@ -16,12 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.example.currencyconverter.databinding.ActivityMainBinding;
 import com.google.android.material.textfield.TextInputEditText;
 
 import android.view.Menu;

@@ -5,7 +5,7 @@
     <item
         android:id="@+id/action_info"
         android:icon="@android:drawable/ic_dialog_info"
-        android:title="Info"
+        android:title="@string/info"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_clear_after_calculate"

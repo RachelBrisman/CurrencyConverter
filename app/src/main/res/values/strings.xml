@@ -8,4 +8,9 @@
     <string name="about">About</string>
     <string name="about_text">Rachel Brisman\n MCOO 521 \nSpring 2022</string>
     <string name="info_text">This app converts from one currency amount to another.</string>
+    <string name="banner_text">Please enter the names, amount, and rate:</string>
+    <string name="currency_type">Currency Name</string>
+    <string name="currencyHelperText">ex: USD, NIS, CAD</string>
+    <string name="from">FROM</string>
+    <string name="to">TO</string>
 </resources>

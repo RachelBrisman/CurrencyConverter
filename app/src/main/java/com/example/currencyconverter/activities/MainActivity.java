@@ -1,5 +1,7 @@
 package com.example.currencyconverter.activities;
 
+import static com.example.currencyconverter.model.CurrencyConverter.getCurrencyConverterObjectFromJSONString;
+
 import android.os.Bundle;
 
 import com.example.currencyconverter.R;
@@ -8,6 +10,7 @@ import com.example.currencyconverter.model.CurrencyConverter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
     private CurrencyConverter mCurrencyConverter;
     private boolean mClearAmountAfterCalculation;
+    private String mKeyClearAmountAfterCalculation = "KEY1";
+    private String mKEY_SAVED = "SAVE";
 
     @Override
     protected void onCreate (Bundle savedInstanceState)
@@ -34,15 +39,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
         mCurrencyConverter = new CurrencyConverter();
+        setupToolbar();
+        setupFAB();
+    }
+
+    private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
+
+    private void setupFAB() {
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make (toolbar,"Hello, world!", Snackbar.LENGTH_SHORT).show ();
-            }
-        });
+        fab.setOnClickListener(view -> handleFABClick(fab));
+    }
+
+    private void handleFABClick(View view) {
+
+        Snackbar.make(view, "Invalid Equation", Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -51,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
+    @Override public boolean onPrepareOptionsMenu (Menu menu)
+    {
+        menu.findItem (R.id.action_clear_after_calculate).setChecked(mClearAmountAfterCalculation);
+        return super.onPrepareOptionsMenu (menu);
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -73,5 +93,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(mKEY_SAVED, mCurrencyConverter.getJSONStringFromThis());
+        outState.putBoolean(mKeyClearAmountAfterCalculation, mClearAmountAfterCalculation);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mCurrencyConverter = getCurrencyConverterObjectFromJSONString(savedInstanceState.getString(mKEY_SAVED));
+        mClearAmountAfterCalculation = savedInstanceState.getBoolean(mKeyClearAmountAfterCalculation);
     }
 }

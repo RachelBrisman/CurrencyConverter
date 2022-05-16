@@ -9,4 +9,5 @@
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#000000</color>
     <color name="colorDefaultBackground">@android:color/background_light</color>
+    <color name="textColor">#000000</color>
 </resources>

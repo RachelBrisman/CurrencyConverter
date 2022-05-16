@@ -3,6 +3,8 @@ package com.example.currencyconverter.activities;
 import android.os.Bundle;
 
 import com.example.currencyconverter.R;
+import com.example.currencyconverter.lib.Utils;
+import com.example.currencyconverter.model.CurrencyConverter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -23,14 +25,15 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
+    private CurrencyConverter mCurrencyConverter;
+    private boolean mClearAmountAfterCalculation;
 
     @Override
     protected void onCreate (Bundle savedInstanceState)
     {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
+        mCurrencyConverter = new CurrencyConverter();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -57,8 +60,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_about) {
+            Utils.showInfoDialog (MainActivity.this,
+                    R.string.about, R.string.about_text);
         }
 
         return super.onOptionsItemSelected(item);

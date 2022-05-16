@@ -22,6 +22,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.currencyconverter.databinding.ActivityMainBinding;
+import com.google.android.material.textfield.TextInputEditText;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,6 +33,14 @@ public class MainActivity extends AppCompatActivity {
     private boolean mClearAmountAfterCalculation;
     private String mKeyClearAmountAfterCalculation = "KEY1";
     private String mKEY_SAVED = "SAVE";
+    private double currencyAmount;
+    private double currencyRate;
+    private double total;
+
+    private TextInputEditText name1;
+    private TextInputEditText name2;
+    private TextInputEditText amount;
+    private TextInputEditText rate;
 
     @Override
     protected void onCreate (Bundle savedInstanceState)
@@ -41,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         mCurrencyConverter = new CurrencyConverter();
         setupToolbar();
         setupFAB();
+        initializeViews();
     }
 
     private void setupToolbar() {
@@ -54,8 +64,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleFABClick(View view) {
+        //try to do equation
+        try {
+            currencyAmount = Double.parseDouble(amount.getText().toString());
+            currencyRate = Double.parseDouble(rate.getText().toString());
+        } catch (NumberFormatException e) {
+            //else
+            Snackbar.make(view, "Only type valid doubles", Snackbar.LENGTH_LONG).show();
+            return;
+        }
 
-        Snackbar.make(view, "Invalid Equation", Snackbar.LENGTH_LONG).show();
+        mCurrencyConverter.setCurrencyFromAmount(currencyAmount);
+        mCurrencyConverter.setConversionPercentage(currencyRate);
+
+        try{
+            total = mCurrencyConverter.getConvertedCurrencyAmount();
+
+            Snackbar.make(view,
+                    name1 + " " + currencyAmount + " = " + name2 + " " + total,
+                    Snackbar.LENGTH_LONG).show();
+            if(mClearAmountAfterCalculation)
+            {
+                name1.setText("");
+                name2.setText("");
+                rate.setText("");
+                amount.setText("");
+            }
+        }catch (IllegalStateException e){
+            //else
+            Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+    private void initializeViews() {
+        name1 = findViewById(R.id.currency1Name);
+        name2 = findViewById(R.id.currency2Name);
+        rate = findViewById(R.id.currencyRate);
+        amount = findViewById(R.id.currencyAmount);
     }
 
     @Override
@@ -83,16 +128,20 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_about) {
             Utils.showInfoDialog (MainActivity.this,
                     R.string.about, R.string.about_text);
-        }
-        if (id == R.id.action_info) {
+        }else if (id == R.id.action_info) {
             Utils.showInfoDialog (MainActivity.this,
                     R.string.info, R.string.info_text);
-        }
-        if (id == R.id.action_clear_after_calculate) {
-
+        }else if (id == R.id.action_clear_after_calculate) {
+            toggleMenuItem(item);
+            mClearAmountAfterCalculation = item.isChecked();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void toggleMenuItem(MenuItem item)
+    {
+        item.setChecked(!item.isChecked());
     }
 
     @Override

@@ -28,7 +28,7 @@
             android:weightSum="2">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/no_dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="@integer/weight"
                 android:layout_margin="@dimen/default_activity_margin"
@@ -43,7 +43,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/no_dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="@integer/weight"
                 android:layout_margin="@dimen/default_activity_margin"

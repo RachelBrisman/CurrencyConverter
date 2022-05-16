@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getSnackbarText() {
-        return name1 + " " + currencyAmount + " = " + name2 + " " + total;
+        return name1.getText().toString() + " " + currencyAmount + " = " + name2.getText().toString() + " " + total;
     }
 
     private void initializeViews() {

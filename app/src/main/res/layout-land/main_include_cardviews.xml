@@ -11,8 +11,14 @@
         android:weightSum="2"
         android:layout_gravity="center">
 
-        <include layout="@layout/main_include_first_cardview"/>
-        <include layout="@layout/main_include_second_cardview"/>
+        <include layout="@layout/main_include_first_cardview"
+            android:layout_weight="@integer/weight"
+            android:layout_width="@dimen/no_dp"
+            android:layout_height="wrap_content"/>
+        <include layout="@layout/main_include_second_cardview"
+            android:layout_weight="@integer/weight"
+            android:layout_width="@dimen/no_dp"
+            android:layout_height="wrap_content"/>
 
         <!--<com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"

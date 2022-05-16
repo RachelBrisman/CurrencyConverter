@@ -6,5 +6,6 @@
     <string name="info">Info</string>
     <string name="clear_after_calculation">Clear After Calculation</string>
     <string name="about">About</string>
-    <string name="about_text">Rachel Brisman\n MCON 521 \nSpring 2022</string>
+    <string name="about_text">Rachel Brisman\n MCOO 521 \nSpring 2022</string>
+    <string name="info_text">This app converts from one currency amount to another.</string>
 </resources>

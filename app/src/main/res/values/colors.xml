@@ -8,4 +8,5 @@
     <color name="secondaryDarkColor">#cb9ca1</color>
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#000000</color>
+    <color name="colorDefaultBackground">@android:color/background_light</color>
 </resources>

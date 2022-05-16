@@ -64,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
             Utils.showInfoDialog (MainActivity.this,
                     R.string.about, R.string.about_text);
         }
+        if (id == R.id.action_info) {
+            Utils.showInfoDialog (MainActivity.this,
+                    R.string.info, R.string.info_text);
+        }
+        if (id == R.id.action_clear_after_calculate) {
+
+        }
 
         return super.onOptionsItemSelected(item);
     }

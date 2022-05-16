@@ -19,7 +19,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.CurrencyConverter.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.CurrencyConverter.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
-    <style name="Theme.CurrencyConverter.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.CurrencyConverter.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <style name="Theme.CurrencyConverter.NoActionBar.SplashScreenTheme">
+        <item name="android:background">@drawable/splash_background</item>
+    </style>
+
 </resources>
